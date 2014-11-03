@@ -1,0 +1,71 @@
+|***
+	Developer's documentation for the 'Attack on Dr Holly' game.
+|***
+
+| Basic information
+	Language: C++
+	OS (used for develompent): Ubuntu 12.10
+	Framework: SFML (Simple and fast multimedia library)
+	Compiler: g++ 4.7.2
+	Art program: Aseprite 0.9.5
+	Audio program: MilkyTracker 0.90.85
+	Editor: VIM 7.3
+
+	Note:
+		Documentation for class methods and variables can be found
+		in their respective documentation files and also in the
+		abundant comments inside the source code.
+|***
+
+| The game
+	The game is maintained by the main game while loop, which iterates as long as the
+	render window is open and the player has not chosen [EXIT] option in the menu.
+	In each iteration it processes the player's input, checks for frame time (minimal is 1/60s),
+	if the game isn't paused it updates the position of all game objects (entities and projectiles)
+	and then renders everything to the render window.
+
+	The update() method moves the player, all entities and projectiles and then checks for collisions
+	between objects and deals with them, in the end the method call level progression manager and checks
+	if the current level has been completed and if so, starts a new one.
+
+	The game is terminated when the player wins, loses, closes the window or choses the [EXIT] option
+	in the menu. (For debugging purposes, the HOME key will exit the game aswell.)
+
+	The game is won when the update() method recieves a positive answer on emptiness of the enemy vector
+	in the last room, it is lost if the player's health reaches 0.
+|***
+
+| Possible future steps
+	Code cleanup and improvement
+	Procedural generation for levels
+	Pseudo-random AI pattern distribution
+	Power-ups
+	Save system
+	Multiplayer using SFML/Network.hpp
+	Dialogues
+	Stage type patterns for bosses
+	Lua scripting for config values and AI's
+|***
+
+| Resources
+	SFML website:
+		www.sfml-dev.org
+	SFML forums:
+		en.sfml-dev.org/forums/
+	SFML wiki:
+		github.com/LaurentGomila/SFML/wiki
+	SFML bugtracker:
+		gitbu.com/LaurentGomila/SGML/issues
+	IRC:
+		#sfml at irc.boxbox.org/6667
+	
+	Note:
+		SFML is copyrighted (c) by Laurent Gomila and distributed under the zlib/png license.
+		I (Jaroslav Jindrak) did not write any of the SFML associated code.
+|***
+
+| Contact
+	Jaroslav Jindrak - Dzejrou:
+		dzejrou@gmail.com
+		@Dzejrou on twitter.com
+|***

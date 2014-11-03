@@ -1,0 +1,260 @@
+|***
+	Developer's documentation for the Game class.
+|***
+
+|***
+	1 - STATE ENUM
+		Enumeration type for handling the game's state.
+		Members:
+			RUNNING,PAUSED,ENDED,WON,LOST
+|***
+
+|***
+	2 - Game class
+|***
+
+| Private member variables
+	bool isMovingUp,isMovingDown,isMovingLeft,isMovingRight:
+		Boolean variables determining the direction of the movement.
+	unsigned int wWidth:
+		Width of the rendering window.
+	unsigned int wHeight:
+		Height of the rendering window.
+	Menu* menu:
+		Pointer to a menu object.
+	Player* player:
+		Pointer to a player object.
+	sf::Clock clock:
+		Internal game clock used for frametime calculation.
+	std::vector<Enemy*> CharList:
+		Vector of pointers to enemy objects.
+	std::vector<Projectile*> ProjList:
+		Vector of pointers to projectile objects.
+	std::Vector<Projectile*> PlrProjList:
+		Vector of pointers to projectile objects created by the player.
+	sf::RenderWindow window:
+		Render window object.
+	sf::Music* music:
+		Pointer to a music object.
+	sf::RectangleShape wall1,wall2,wall3,wall4:
+		Game room wall objects.
+	sf::RectangleShape barHP,backHP:
+		Healthbar rectangle objects.
+	sf::Text textHP:
+		HP text to be displayed next to the healthbar.
+	sf::Font font:
+		Basic font used for textHP and intro texts.
+	STATE gameState:
+		The game's current state.
+	Level* currentLevel:
+		Pointer to a Level object, used for level progression management.
+|***
+
+| Private methods
+	void process():
+		Purpose:
+			Accepts player's inputs.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	void update(sf::Time):
+		Purpose:
+			Updates the game (movement, shooting, collisions, level progression).
+		Parameters:
+			Frame time.
+		Returns:
+			NOTHING
+	void render():
+		Purpose:
+			Renders and draws everything to the render window.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	void handleInput(sf::Keyboard::Key,bool):
+		Purpose:
+			Handling the player's input.
+		Parameters:
+			Code of the key pressed/release.
+			Boolean value determining if the key was pressed or released.
+		Returns:
+			NOTHING
+	void changePlrSprite():
+		Purpose:
+			Determines which texture should the player's sprite have based on his movement.
+			Then calls the player's changeSprite() method.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	void collisionSystem():
+		Purpose:
+			System that detects and handles collisions between objects.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	void spawnEnemies():
+		Purpose:
+			Spawns enemies when a new room is entered.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	void getHealthBar():
+		Purpose:
+			Updating and drawing the health bar.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	void getWinScreen():
+		Purpose:
+			Displaying the 'won' screen and waiting for enter.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	void getLostScreen():
+		Purpose:
+			Displaying the 'lost' screen and waiting for enter.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	void pollForEnter(STATE):
+		Purpose:
+			Polls the player for input until enter is pressed.
+		Parameters:
+			Condition state for the loop, either WON or LOST.
+		Returns:
+			NOTHING
+	bool outOfBounds(sf::Sprite*):
+		Purpose:
+			Determines whether the target sprite has reached or passed the walls.
+		Parameters:
+			Pointer to the target sprite.
+		Returns:
+			True if the target sprite is outside the game window, or has hit a wall.
+	bool collisionWall(sf::Sprite*):
+		Purpose:
+			Checks if the target sprite has hit a wall.
+		Parameters:
+			Pointer to the target sprite.
+		Returns:
+			True if the target sprite has hit a wall, false otherwise.
+	bool collide(sf::Sprite*,sf::Sprite*):
+		Purpose:
+			Checks if two sprites collide with each other.
+		Parameters:
+			Pointers to said two sprites.
+		Returns:
+			True if the sprites collide, false otherwise.
+|***
+
+| Public methods
+	Game(unsigned int, unsigned int):
+		Purpose:
+			Game object's constructor, sets all variables and initializes all objects.
+		Parameters:
+			Unsigned integers for the current screen size.
+		Returns:
+			NOTHING
+	void run():
+		Purpose:
+			Main game method that runs the game.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	~Game():
+		Purpose:
+			Default game object's destructor, does the memory deallocation.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+|***
+
+|***
+	3 - Level
+|***
+
+| Member variables
+	int levelNumber:
+		Number of the current level.
+	bool freshlyCreated:
+		Used for enemy spawning.
+	bool done[]:
+		Indicates whether the [index]-th level has been completed.
+	bool portal[]:
+		Indicates whether the [index]-th portal is to be drawn.
+	bool portalOpen[]:
+		Indicates whether the [index]-th portal is accessible.
+	sf::Sprite portals[]:
+		Portal sprites.
+	sf::Texture textureOPEN,textureDONE,textureCLOSED:
+		Textures for their respective portal states.
+	sf::Font font:
+		Font used for displaying text on the screen.
+	sf::Text text:
+		Text to be drawn to the screen.
+	bool started:
+		A boolean variable indicating if the textbox should be drawn.
+	sf::RectangleShape textbox:
+		A background used for the text.
+|***
+
+| Methods
+	void init(int,int):
+		Purpose:
+			Initializes the level manager.
+		Parameters:
+			Integer variables representing the render window sizes.
+		Returns:
+			NOTHING
+	void create():
+		Purpose:
+			Creates the current level.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	void setPortals():
+		Purpose:
+			Determines which portals are to be drawn based on the current level number.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	bool collide(sf::Sprite*,sf::Sprite*):
+		Purpose:
+			Checks if two sprites collide with each other.
+		Parameters:
+			Pointers to said two sprites.
+		Returns:
+			True if the sprites collide, false otherwise.
+	void pollPortal(sf::Sprite*,int,int):
+		Purpose:
+			Checks if the player entered a portal.
+		Parameters:
+			Pointer to the player's sprite.
+			Integer values of window sizes.
+		Returns:
+			NOTHING
+	void getText(sf::RenderWindow*):
+		Purpose:
+			Displays intro text on the screen.
+		Parameters:
+			Pointer to the render window.
+		Returns:
+			NOTHING
+	void draw(sf::RenderWindow*):
+		Purpose:
+			Draws the portals on the screen.
+		Parameters:
+			Pointer to the render window.
+		Returns:
+			NOTHING
+|***

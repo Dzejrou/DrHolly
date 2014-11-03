@@ -1,0 +1,65 @@
+|***
+	User's documentation for the game 'Attack on evil Dr Holly':
+|***
+
+| Controls
+	Movement:
+		W = up
+		S = down
+		A = left
+		D = right
+	Shooting:
+		I = up
+		K = down
+		J = left
+		L = right
+	Misc:
+		Escape = menu
+		Space = pause
+|***
+
+| Goal of the game
+	In the starting room, there are three portals, if the portal
+	is blue, it is enterable, if it is green, that wing is complete
+	and if it is red, that wind is not unlocked yet.
+	In each wing, accessed by it's respective portal, are two rooms.
+	In the first room, there will be several enemies called 'Blobs',
+	after you defeat them, the portal to the boss' room will apear.
+	When you manage to beat the boss, next wing will unlock, the main
+	goal of the game is to beat you way to the boss of the north wing,
+	called Dr Thomas Holly, and beat him.
+|***
+
+| Blobs
+	West wing:
+		These blobs will try to charge at you (turning red and increasing
+		their speed aswell as locking their direction to your last position).
+	East wing:
+		These stationary blobs will be in the corners of the room and shoot
+		randomly in one of 5 directions to the inside of the room.
+	North wing:
+		These blobs will move in a square, whilst shooting low-damage projectiles
+		but at a faster rate than any other.
+|***
+
+| Bosses
+	West wing:
+		[Dr Forstix] This boss shares similar strategy to the west wing's blobs
+		as he will try to charge at you, although his charges will be faster and
+		longet in trajectory length.
+	East wing:
+		[Doc Topferino] This boss will teleport (clockwise) between 4 points that
+		form corners of a square, whilst shooting at you in a simillar manner to
+		the east wing's blobs.
+	North wing:
+		[Dr Holly] This boss moves from left to right behind an invisible wall,
+		that can be penetrated only by his or your projectiles.
+|***
+
+| About
+	This game was created as a semestral project by Jaroslav Jindrak (@Dzejrou)
+	for the Programming II summer semester course.
+	Any suggestions or opinions related to the game can be sent to the author
+	on twitter or via e-mail to dzejrou@gmail.com, and are welcome.
+	(Note: This is the author's first C++, OOP and game project.)
+|***

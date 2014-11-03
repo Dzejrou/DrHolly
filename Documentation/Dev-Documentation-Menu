@@ -1,0 +1,96 @@
+|***
+	Developer's documentation to the Menu class.
+|***
+
+| Private member variables
+	sf::Texture texture:
+		Stores the menu check texture.
+	sf::Sprite check:
+		Used to draw the menu check.
+	sf::Font font:
+		Font used for all menu texts.
+	sf::Vector2f position:
+		Vector used for sprite and text positioning.
+	int choice:
+		Number representing the current choice in the menu.
+	int optCout:
+		Number representing the quantity of options in the menu.
+	unsigned int width:
+		Number representing the width of the screen, used for calculating
+		the text's and sprite's x position axis value.
+	unsigned int height:
+		Number representing the height of the screen, used for calculating
+		the text's and sprite's y position axis value.
+	bool willExit:
+		A boolean variable determining whether the game should end after
+		exiting the menu. (Changed to true by selecting the [Exit] option.)
+	bool done:
+		A boolean variable determining whether the player has already chosen
+		and option in the menu or not.
+	std::vector<sf::Text*> option:
+		A vector of dynamically allocated text objects for the main menu options.
+	std::vector<sf::Text*> helpText:
+		A vector of dynamically allocated text objects for the help submenu options.
+|***
+
+| Private methods
+	void poll(int,sf::RenderWindow*):
+		Purpose:
+			Polls the player for inputs, which it sets to be handled.
+		Parameters:
+			Number of choices.
+			Reference to the rendering window.
+		Returns:
+			NOTHING
+	void handleInput(sf::Keyboard::Key,int):
+		Purpose:
+			Handles player's inputs and changes the value of the choice
+			member variable.
+		Parameters:
+			Key code of the user's input.
+			Number of choices.
+		Returns:
+			NOTHING
+	void drawOptions(std::vector<sf::Text*>,bool,sf::RenderWindow&):
+		Purpose:
+			Draws the option texts (+ the check if necessary).
+		Parameters:
+			Vector of option texts.
+			Boolean determining if the check should be drawn.
+			Reference to the rendering window.
+		Returns:
+			NOTHING
+	void subMenuHelp(sf::RenderWindow&)
+		Purpose:
+			Displays the Help submenu and waits for an enter from the player.
+		Parameters:
+			Reference to the rendering window.
+		Returns:
+			NOTHING
+|***
+
+| Public methods
+	Menu(unsigned int,unsigned int):
+		Purpose:
+			Constructor, sets all the necessary variables and loads textures.
+		Parameters:
+			Unsigned integer values of the screen's resolution.
+		Returns:
+			NOTHING
+	bool run(sf::RenderWindow&,sf::Music*):
+		Purpose:
+			Main method that runs the menu loop.
+		Parameters:
+			Reference to the rendering window.
+			Pointer to the games music for it's status change.
+		Returns:
+			True if the player selected the [Exit] option, false
+			otherwise.
+	~Menu():
+		Purpose:
+			Default menu class destructor.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+|***

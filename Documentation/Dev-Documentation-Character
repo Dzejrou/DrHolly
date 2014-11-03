@@ -1,0 +1,305 @@
+|***
+	Developer's documentation for the Character classes.
+|***
+
+|***
+	1 - Player class:
+|***
+
+| Private member variables
+	int HP:
+		Integer value representing the player's hit points.
+	int MaxHP:
+		Maximum value of the palyer's hit points.
+	int minDMG:
+		Minimum damage value.
+	int maxDMG:
+		Maximum damage value.
+	sf::Texture plrFront,plrBack,plrLeft,plrRight:
+		Player's sprite's textures, for each movement direction.
+	sf::Clock clockCD:
+		Internal player's clock used for cooldown calculation.
+	sf::Time currTime:
+		Current time variable used in cooldown calculation.
+	sf::SoundBuffer shotBuffet:
+		Soundbuffer for the shot sound.
+	sf::Sound shotSound:
+		Sound for the player's shots.
+	sf::Sprite sprite:
+		Player's sprite, used for drawing to the render window.
+|***
+
+| Private methods
+	int getDMG():
+		Purpose:
+			Damage calculation.
+		Parameters:
+			NONE
+		Returns:
+			Pseudo-random value from the interval <minDMG,maxDMG>.
+|***
+
+| Public methods
+	Player(unsigned int, unsigned int):
+		Purpose:
+			Player class constructor. Sets variables and loads textures and sounds.
+		Parameters:
+			Unsigned integer values of the screen resolution.
+		Returns:
+			NOTHING
+	void move(sf::Vector2f):
+		Purpose:
+			Moves the player.
+		Parameters:
+			Movement vector.
+		Returns:
+			NOTHING
+	void changeSprite(int):
+		Purpose:
+			Changes player's sprite based on his movement.
+		Parameters:
+			Number of the sprite.
+		Returns:
+			NOTHING
+	void restoreHP():
+		Purpose:
+			Sets player's HP to MaxHP.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	void setPosition(sf::Vector2f):
+		Purpose:
+			Sets the player's position.
+		Parameters:
+			Vector of the target position coordinates.
+		Returns:
+			NOTHING
+	sf::Vector2f getPosition():
+		Purpose:
+			To get the player's current position.
+		Parameters:
+			NONE
+		Returns:
+			Vector of the player's position coordinates.
+	Projectile* shoot(sf::Keyboard::Key):
+		Purpose:
+			Projectile generation.
+		Parameters:
+			Key code of the player's input.
+		Returns:
+			Pointer to a new projectile object.
+	bool inflictDMG(int):
+		Purpose:
+			To deal damage to the player.
+		Parameters:
+			Integer value representing the damage dealt.
+		Returns:
+			True if the player died from this damage, false otherwise.
+	bool coolDown():
+		Purpose:
+			Set time between player's attacks. If the cooldown time period ends,
+			this method resets it.
+		Parameters:
+			NONE
+		Returns:
+			True if the player is on cooldown, false otherwise.
+	float getHP():
+		Purpose:
+			Health bar updates.
+		Parameters:
+			NONE
+		Returns:
+			Float value of the player's remaining health - in %.
+	sf::Sprite* getSprite():
+		Purpose:
+			Drawing of the player, collision detection.
+		Parameters:
+			NONE
+		Returns:
+			Pointer to the player's sprite.
+|***
+
+|***
+	2 - Enemy class
+|***
+
+| Private member variables
+	int HP:
+		Current hitpoint value.
+	int minDMG:
+		Minimal damage value.
+	int maxDMG:
+		Maximal damage value.
+	int AI:
+		AI pattern number of the entity.
+	unsigned int w:
+		Width of the rendering window.
+	unsigned int h:
+		Height of the rendering window.
+	bool canDoDMG:
+		Determines whether the enemy can deal dmg to the player or not.
+	bool isInStun:
+		Determines whether the enemy is stunned or not.
+	bool isInCharge:
+		Determines whether the enemy is charging at the player or not.
+	bool willGetDeleted:
+		Determines whether the enemy is to be deleted during the next update() call.
+	sf::Texture texture:
+		Main enemy texture.
+	sf::Texture textureCharge:
+		Charging texture.
+	sf::Clock clock:
+		Internal clock used for stun, charge, move and cooldown time calculation.
+	sf::Time cdTime:
+		Time when the cooldown begun.
+	sf::Time chTime:
+		Time when the charge begun.
+	sf::Time stTime:
+		Time when the stun begun.
+	sf::Time movTime:
+		Time of the last direction change.
+	sf::Vector2f chargeDirection:
+		Direction vector of the charge.
+	sf::Vector2f movDirection:
+		Last movement vector.
+	sf::Vector2f plrPosition:
+		Position vector of the player object.
+	sf::Vector2f P1,P2,P3,P4:
+		Vector of the corner coordinates for on-rail movement.
+	sf::Sprite sprite:
+		The enemy's sprite used for drawing and collision detection.
+|***
+
+| Private methods
+	float getDistance(sf::Vector2f):
+		Purpose:
+			Distance calculation.
+		Parameters:
+			Vector of the target's coordinates.
+		Returns:
+			Distance between the enemy object and the target object.
+	bool isCharging():
+		Purpose:
+			Charge managment, resets the charge duration if the charge has ended.
+		Parameters:
+			NONE
+		Returns:
+			True if the enemy is charging, false otherwise.
+	int getPlrSector(sf::Vector2f):
+		Purpose:
+			Aiming and movement decisions.
+		Parameters:
+			Vector of target's coordinates.
+		Returns:
+			Number of the sector the target is in in relation to the enemy object.
+	sf::Vector2f normalize(sf::Vector2f):
+		Purpose:
+			Vector manipulation.
+		Parameters:
+			Target vector.
+		Returns:
+			Normalize form of the target vector.
+|***
+
+| Public methods
+	Enemy(int):
+		Purpose:
+			Enemy class constructor, sets all variables and loads textures.
+		Parameters:
+			AI pattern number.
+		Returns:
+			NOTHING
+	void move(sf::Vector2f):
+		Purpose:
+			Moves the enemy object.
+		Parameters:
+			Movement vector.
+		Returns:
+			NOTHING
+	void requestDeletion():
+		Purpose:
+			Sets the enemy object to be deleted upon next update() call.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	void stun():
+		Purpose:
+			Stuns the enemy object.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	void setPosition(sf::Vector2f):
+		Purpose:
+			Sets the position of the enemy object.
+		Parameters:
+			Position coordinates vector.
+		Returns:
+			NOTHING
+	sf::Vector2f getPosition():
+		Purpose:
+			To get the position coordinates vector.
+		Parameters:
+			NONE
+		Returns:
+			Vector of the enemy object's coordinates.
+	sf::Vector2f getDirection(sf::Vector2f):
+		Purpose:
+			Calculation of the direction vector.
+		Parameters:
+			Vector of the target object's coordinates.
+		Returns:
+			Direction vector.
+	Projectile* shoot(sf::Vector2f):
+		Purpose:
+			Projectile creation (shooting).
+		Parameters:
+			Vector of target's position coordinates.
+		Returns:
+			Pointer to newly allocated projectile object.
+	sf::Sprite* getSprite():
+		Purpose:
+			Drawing and collision detection.
+		Parameters:
+			NONE
+		Returns:
+			Pointer to the object's sprite variable.
+	bool inflictDMG(int):
+		Purpose:
+			Damage dealing.
+		Parameters:
+			Integer value of the damage dealt.
+		Returns:
+			True if the enemy object died because of said damage, false otherwise.
+	bool getsDeleted():
+		Purpose:
+			Enemy object lifetime evaluation.
+		Parameters:
+			NONE
+		Returns:
+			True if the enemy object is to be deleted upon the next update() call, false
+			otherwise.
+	bool coolDown():
+		Purpose:
+			Time between attacks moderation, resets cooldown timer if necessary.
+		Parameters:
+			NONE
+		Returns:
+			True if the enemy can't attack because of the cooldown, false otherwise.
+	bool isStunned():
+		Purpose:
+			Stun time moderation, resets stun timer if necessary.
+		Parameters:
+			NONE
+		Returns:
+			True if the enemy is stunned, false otherwise.
+	int getDMG():
+		Purpose:
+			Damage calculation.
+		Parameters:
+			NONE
+		Returns:
+			Integer value inside the interval <minDMG,maxDMG>.
+|***

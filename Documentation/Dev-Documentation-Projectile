@@ -1,0 +1,88 @@
+|***
+	Developer's documentation for the Projectile class.
+|***
+
+| Private member variables
+	int MAXlifetime:
+		Value that lifetime variable cannot exceed, otherwise
+		the projectile life spand has ended and it is deleted.
+	int lifetime:
+		Current lifetime of the projectile, incremented in each
+		move() call.
+	int DMG:
+		Number representing the damage value the projectile holds.
+	bool willGetDeleted:
+		Supporting variable determining whether the projectile should
+		be deleted or not.
+	sf::Texture texture:
+		The projectile's texture variable.
+	sf::Vector2f direction:
+		Vector by which is the position of the projectile increase in each
+		move() call.
+	sf::Sprite sprite:
+		The projectile's sprite variable used for drawing into the game's
+		render window.
+|***
+
+| Public methods
+	Projectile(int,int,std::string,sf::Vector2f,sf::Vector2f):
+		Purpose:
+			Projectile class constructor, sets all variables and loads textures.
+		Parameters:
+			Integer value of maximal lifetime.
+			Integer value of the projectile's damage.
+			String of the texture's address.
+			Direction vector of the projectile.
+			Spawn position vector.
+		Returns:
+			NOTHING
+	void move():
+		Purpose:
+			Moves the projectile.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	void requestDeletion():
+		Purpose:
+			Sets the projectile to be deleted on the next game's update.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	void bounce():
+		Purpose:
+			Inverts the projectile's direction vector, making it bounce off the walls.
+		Parameters:
+			NONE
+		Returns:
+			NOTHING
+	bool getsDeleted():
+		Purpose:
+			Determines whether the projectile is supposed to be killed or not.
+		Parameters:
+			NONE
+		Returns:
+			True if the projectile should be deleted, false otherwise.
+	sf::Vector2f getPosition():
+		Purpose:
+			Returns the projectile's position for collision handling.
+		Parameters:
+			NONE
+		Returns:
+			Float vector of the projectile's coordinates.
+	int getDMG():
+		Purpose:
+			Returns the projectile's damage, which is the inflicted to a target entity.
+		Parameters:
+			NONE
+		Returns:
+			Integer value of the projectile's damage.
+	sf::Sprite* getSprite():
+		Purpose:
+			Drawing of the projectile.
+		Parameters:
+			NONE
+		Returns:
+			Pointer to the projectile's sprite.
+|***

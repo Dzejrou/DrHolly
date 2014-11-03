@@ -12,4 +12,4 @@
 03. Change that horrible song.<br>
 04. Class inheritance structure for enemies and bosses!<br>
 <br>
-> Created by Dzejrou 2013
+> Created by Dzejrou 2014

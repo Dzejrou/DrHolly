@@ -10,6 +10,6 @@
 01. Clean up the code.<br>
 02. Add C++11 features.<br>
 03. Change that horrible song.<br>
-04. Class ingeritance structure for enemies and bosses!<br>
+04. Class inheritance structure for enemies and bosses!<br>
 <br>
 > Created by Dzejrou 2013

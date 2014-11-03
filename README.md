@@ -3,7 +3,7 @@
 <br>This was my first C++, my first SFML and my first big project, so the code style,
 <br>used methods and the usage of C++ std containers are very basic and simple.
 <br><br>
-****TODO:****<br>
+***TODO:*** <br>
 01. Clean up the code.<br>
 02. Add C++11 features.<br>
 03. Change that horrible song.<br>
